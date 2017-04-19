@@ -2,6 +2,7 @@
 
 from ObjectManager import *
 from Metadata import *
+from Processed_Img import *
 
 obj1 = Object()
 obj1.x=2
@@ -26,12 +27,20 @@ print obj_m.__str__()
 
 
 # testing metadata 
-a = Metadata_addition("turbitidy", 0.0, 100.0, 200.0)
+a = Metadata_addition( 0.0, 100.0, 200.0)
 a.setMin(3) # not working
 print a.__str__()
 
 md = Metadata("in", "out", [a])
 print md.__str__()
 md.exportNewMetadata()
+
+
+pm = Processed_Img(obj_m,a)
+print pm.getMetadataAdditionStr()
+pm.algorithm()
+pm.exportImg("<outFileName>")
+
+
 print "End of test script"
 
